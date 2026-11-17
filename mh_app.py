@@ -169,8 +169,9 @@ st.markdown(
 
 [data-testid="stSidebar"]
 .stButton > button[kind="secondary"]:hover {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.22);
+    color: #FFFFFF;
 }
 
 [data-testid="stSidebar"]
@@ -318,6 +319,88 @@ st.markdown(
     box-shadow: 0 4px 12px rgba(16,24,40,0.08);
 }
 
+
+/* CONSISTENT BUTTON CONTRAST */
+
+/* Primary actions, including form submit buttons */
+[data-testid="stMain"] .stButton > button[kind="primary"],
+[data-testid="stMain"] .stFormSubmitButton > button[kind="primary"] {
+    background-color: #1E3A5F !important;
+    border-color: #1E3A5F !important;
+    color: #FFFFFF !important;
+}
+
+[data-testid="stMain"] .stButton > button[kind="primary"] *,
+[data-testid="stMain"] .stFormSubmitButton > button[kind="primary"] * {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stMain"] .stButton > button[kind="primary"]:hover,
+[data-testid="stMain"] .stFormSubmitButton > button[kind="primary"]:hover {
+    background-color: #294E79 !important;
+    border-color: #294E79 !important;
+    color: #FFFFFF !important;
+}
+
+/* Secondary actions on light surfaces */
+[data-testid="stMain"] .stButton > button[kind="secondary"],
+[data-testid="stMain"] .stFormSubmitButton > button[kind="secondary"] {
+    background-color: #FFFFFF !important;
+    border: 1px solid #B8C5D6 !important;
+    color: #172B49 !important;
+}
+
+[data-testid="stMain"] .stButton > button[kind="secondary"] *,
+[data-testid="stMain"] .stFormSubmitButton > button[kind="secondary"] * {
+    color: #172B49 !important;
+}
+
+[data-testid="stMain"] .stButton > button[kind="secondary"]:hover,
+[data-testid="stMain"] .stFormSubmitButton > button[kind="secondary"]:hover {
+    background-color: #EAF0F7 !important;
+    border-color: #1E3A5F !important;
+}
+
+/* Sidebar buttons: explicit text colors for every state */
+[data-testid="stSidebar"] .stButton > button[kind="secondary"],
+[data-testid="stSidebar"] .stButton > button[kind="secondary"] * {
+    color: #FFFFFF !important;
+}
+
+[data-testid="stSidebar"] .stButton > button[kind="primary"],
+[data-testid="stSidebar"] .stButton > button[kind="primary"] * {
+    color: #14213D !important;
+}
+
+[data-testid="stSidebar"] .stButton > button[kind="primary"]:hover {
+    background: #F6B77F !important;
+    border-color: #F6B77F !important;
+}
+
+[data-testid="stSidebar"] .stButton > button:disabled,
+[data-testid="stSidebar"] .stButton > button:disabled * {
+    color: #B5C5D7 !important;
+    opacity: 1 !important;
+}
+
+/* Inputs and form labels */
+[data-testid="stMain"] label,
+[data-testid="stMain"] [data-testid="stWidgetLabel"] p {
+    color: #172033 !important;
+}
+
+[data-testid="stMain"] input,
+[data-testid="stMain"] textarea {
+    color: #172033 !important;
+    background-color: #FFFFFF !important;
+}
+
+/* Ensure native sidebar footer stays readable */
+[data-testid="stSidebar"] .sidebar-native-footer {
+    border-top: 1px solid rgba(255,255,255,0.14);
+    padding-top: 12px;
+    margin-top: 18px;
+}
 
 /* RESPONSIVE DESIGN */
 
@@ -595,25 +678,12 @@ if not is_public_home:
             )
 
         # FOOTER
+        # Native Streamlit text avoids raw HTML rendering in the sidebar.
 
-        st.markdown(
-            """
-<div class="sidebar-footer">
-
-    <div class="sidebar-footer-title">
-        MineOpsLab
-    </div>
-
-    <div class="sidebar-footer-text">
-        Surface Mining Teaching &amp;
-        Analysis Environment<br>
-        Student Edition | 2026
-    </div>
-
-</div>
-            """,
-            unsafe_allow_html=True,
-        )
+        st.divider()
+        st.markdown("**MineOpsLab**")
+        st.caption("Surface Mining Teaching & Analysis Environment")
+        st.caption("Student Edition | 2026")
 
 
 # ============================================================
